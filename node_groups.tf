@@ -144,4 +144,9 @@ resource "yandex_kubernetes_node_group" "node_groups" {
       max_unavailable = each.value["max_unavailable"]
     }
   }
+  timeouts {
+    create = var.create_timeout
+    update = var.update_timeout
+    delete = var.delete_timeout
+  }
 }
