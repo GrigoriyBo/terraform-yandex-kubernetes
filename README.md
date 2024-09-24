@@ -1,35 +1,5 @@
 # Yandex Cloud Kubernetes Terraform module
 
-Terraform module which creates Yandex Cloud Kubernetes resources.
-
-## Examples
-
-Examples codified under
-the [`examples`](https://github.com/terraform-yacloud-modules/terraform-yandex-kubernetes/tree/main/examples) are intended
-to give users references for how to use the module(s) as well as testing/validating changes to the source code of the
-module. If contributing to the project, please be sure to make any appropriate updates to the relevant examples to allow
-maintainers to test your changes and to keep the examples up to date for users. Thank you!
-
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Requirements
-
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
-| <a name="requirement_tls"></a> [tls](#requirement\_tls) | >= 3.1.0 |
-| <a name="requirement_yandex"></a> [yandex](#requirement\_yandex) | >= 0.72.0 |
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_tls"></a> [tls](#provider\_tls) | >= 3.1.0 |
-| <a name="provider_yandex"></a> [yandex](#provider\_yandex) | >= 0.72.0 |
-
-## Modules
-
-No modules.
-
 ## Resources
 
 | Name | Type |
@@ -88,7 +58,3 @@ No modules.
 | <a name="output_node_groups"></a> [node\_groups](#output\_node\_groups) | Attributes of yandex\_node\_group resources created in cluster |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-## License
-
-Apache-2.0 Licensed.
-See [LICENSE](https://github.com/terraform-yacloud-modules/terraform-yandex-kubernetes/blob/main/LICENSE).
