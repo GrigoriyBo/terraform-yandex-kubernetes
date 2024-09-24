@@ -1,0 +1,50 @@
+name: Tag Version on Merge or Push to Master
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [closed]
+    branches:
+      - master
+
+jobs:
+  tag_version:
+    if: |
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true) || github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Get current tag
+      id: current_tag
+      run: |
+        latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+        echo "latest_tag=$latest_tag" >> $GITHUB_ENV
+
+    - name: Generate new tag
+      id: new_tag
+      run: |
+        if [ -z "${{ env.latest_tag }}" ]; then
+          new_tag="v0.1.0"
+        else
+          version=${{ env.latest_tag }}
+          IFS='.' read -r -a parts <<< "${version#v}"
+          major=${parts[0]}
+          minor=${parts[1]}
+          patch=${parts[2]}
+          patch=$((patch + 1))
+          new_tag="v$major.$minor.$patch"
+        fi
+        echo "new_tag=$new_tag" >> $GITHUB_ENV
+        echo "Generated new tag: $new_tag"
+
+    - name: Create new tag
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git tag ${{ env.new_tag }}
+        git push origin ${{ env.new_tag }}

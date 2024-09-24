@@ -1,10 +1,4 @@
-#
-# yandex cloud coordinates
-#
 
-#
-# naming
-#
 variable "name" {
   description = "K8S cluster name"
   type        = string
@@ -22,9 +16,6 @@ variable "labels" {
   default     = {}
 }
 
-#
-# K8S сluster network
-#
 variable "network_id" {
   description = "The ID of the cluster network"
   type        = string
@@ -78,9 +69,6 @@ variable "cni_type" {
   default     = "calico"
 }
 
-#
-# Cluster IAM
-#
 variable "service_account_id" {
   description = <<-EOF
   ID of existing service account to be used for provisioning Compute Cloud
@@ -104,9 +92,6 @@ variable "node_service_account_id" {
   default     = null
 }
 
-#
-# Cluster options
-#
 variable "release_channel" {
   description = "K8S cluster release channel"
   type        = string
@@ -119,9 +104,6 @@ variable "kms_provider_key_id" {
   default     = null
 }
 
-#
-# Master options
-#
 variable "master_version" {
   description = "Version of K8S that will be used for master"
   type        = string
@@ -208,9 +190,7 @@ variable "master_logging" {
   }
 }
 
-#
 # Cluster node groups
-#
 variable "node_name_prefix" {
   description = "The prefix for node group name"
   type        = string
@@ -290,4 +270,22 @@ variable "enable_oslogin" {
   description = "Enable OS Login for node groups"
   type        = bool
   default     = false
+}
+
+variable "create_timeout" {
+  type        = string
+  default     = "60m"
+  description = "Maximum time for resource creation"
+}
+
+variable "update_timeout" {
+  type        = string
+  default     = "60m"
+  description = "Maximum time for resource update"
+}
+
+variable "delete_timeout" {
+  type        = string
+  default     = "60m"
+  description = "Maximum time for resource deletion"
 }

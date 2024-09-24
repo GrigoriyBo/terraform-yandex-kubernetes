@@ -97,4 +97,9 @@ resource "yandex_kubernetes_cluster" "main" {
       events_enabled             = var.master_logging["enabled"] ? var.master_logging["events_enabled"] : null
     }
   }
+  timeouts {
+    create = var.create_timeout
+    update = var.update_timeout
+    delete = var.delete_timeout
+  }
 }
