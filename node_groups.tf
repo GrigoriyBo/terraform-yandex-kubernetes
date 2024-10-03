@@ -149,4 +149,7 @@ resource "yandex_kubernetes_node_group" "node_groups" {
     update = var.update_timeout
     delete = var.delete_timeout
   }
+  lifecycle {
+    create_before_destroy = true
+  }
 }
